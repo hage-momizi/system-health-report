@@ -8,8 +8,7 @@ AI-powered Linux system health monitoring tool that collects metrics and logs, a
 - **Log collection** — Reads standard system logs (`/var/log/syslog`, `kern.log`, `auth.log`, etc.) and application logs (Apache, Nginx, MySQL, mail)
 - **AI analysis** — Sends collected data to OpenRouter, OpenAI, or Anthropic for intelligent health assessment
 - **Discord notifications** — Posts formatted embed reports via webhook or Discord Bot
-- **Slash command: `/report`** — Trigger an on-demand health report from Discord
-- **Slash command: `/fix`** — Describe an issue; AI generates shell commands to fix it. Confirm, auto-execute, or cancel from Discord buttons with real-time progress updates
+- **Slash command: `/health-fix`** — Describe an issue; AI generates shell commands to fix it. Confirm or cancel from Discord buttons with real-time progress updates and a summary file attachment
 - **Scheduled reports** — Runs automatically at configured times (e.g. 09:00 and 21:00)
 - **Multi-language** — AI responses in any language (configured in `config.yml`)
 - **Debian package** — Ships as a `.deb` with systemd service for easy deployment
@@ -43,7 +42,7 @@ sudo systemctl enable --now system-health-report
 ### From source
 
 ```bash
-git clone https://github.com/yukam/system-health-report.git
+git clone https://github.com/hage-momizi/system-health-report.git
 cd system-health-report
 cargo build --release
 ```
