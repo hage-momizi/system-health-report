@@ -130,13 +130,13 @@ auto_fix:
 
 | Command | Description |
 |---------|-------------|
-| `/report` | Generate and post an AI health report immediately |
-| `/fix <instruction>` | Ask the AI to generate fix commands for a described issue |
+| `/health-fix <instruction>` | Ask the AI to generate fix commands for a described issue |
 
-The `/fix` command shows a preview of AI-generated commands with three buttons:
-- **Confirm Fix** — Execute the commands one by one with real-time Discord updates, then send a summary file
-- **Auto Fix** — Execute without confirmation
-- **Cancel** — Dismiss
+The `/health-fix` command shows the instruction and two buttons:
+- **Confirm Fix** — Execute the commands one by one with real-time Discord updates, then send a summary file as attachment
+- **Cancel** — Dismiss without executing
+
+When the scheduled health report is posted, it includes an **Auto Fix** button that opens a prompt to run `/health-fix` with a specific instruction.
 
 ## Building the .deb Package
 
