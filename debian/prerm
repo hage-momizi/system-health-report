@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+systemctl stop system-health-report || true
+systemctl disable system-health-report || true
+
+#DEBHELPER#

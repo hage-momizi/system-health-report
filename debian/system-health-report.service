@@ -1,0 +1,17 @@
+[Unit]
+Description=System Health Report - AI-powered monitoring
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=health-report
+Group=health-report
+ExecStart=/usr/bin/health
+Restart=always
+RestartSec=30
+ConfigurationDirectory=system-health-report
+WorkingDirectory=/etc/system-health-report
+
+[Install]
+WantedBy=multi-user.target

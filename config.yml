@@ -1,0 +1,74 @@
+ai_assistant:
+  active_provider: "openrouter"  # or "openai" or "anthropic"
+  providers:
+    openrouter:
+      api_key: ""
+      model: "google/gemini-2.0-flash-001"
+    openai:
+      api_key: ""
+      model: "gpt-4o"
+    anthropic:
+      api_key: ""
+      model: "claude-3-5-sonnet-latest"
+  schedule:
+    enabled: true
+    times: ["09:00", "21:00"]
+    timezone: "UTC"
+  language: "japanese"  # "japanese" or "english" or any language name
+
+notifications:
+  provider: "discord"
+  webhook_url: ""
+  embed:
+    title: "System Health Report"
+    color: 3447003
+    show_metrics: true
+    show_errors: true
+
+"notifications(Discord BOT)":
+  discord_bot_token: ""
+  channel_id: ""
+  guild_id: ""  # サーバーID（ギルドID）を設定するとスラッシュコマンドが即時反映される
+
+system_metrics:
+  cpu:
+    enabled: true
+    collection_mode: "average"
+    interval_seconds: 60
+  memory:
+    enabled: true
+  load_average:
+    enabled: true
+  disk_status:
+    enabled: true
+    mount_points:
+      - "/"
+      - "/var"
+
+standard_logs:
+  - "/var/log/syslog"
+  - "/var/log/kern.log"
+  - "/var/log/auth.log"
+  - "/var/log/daemon.log"
+  - "/var/log/faillog"
+  - "/var/log/lastlog"
+
+application_logs:
+  apache2:
+    enabled: true
+    path: "/var/log/apache2/error.log"
+  nginx:
+    enabled: false
+    path: "/var/log/nginx/error.log"
+  mysql:
+    enabled: true
+    path: "/var/log/mysql/error.log"
+  mail:
+    enabled: true
+    path: "/var/log/mail.log"
+
+auto_fix:
+  enabled: true
+  workspace: "./fixes/"
+  allow_execution: false
+  backup_before_fix: true

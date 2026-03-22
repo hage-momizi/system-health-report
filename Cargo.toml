@@ -1,0 +1,43 @@
+[package]
+name = "system-health-report"
+version = "0.1.0"
+edition = "2021"
+description = "AI-powered system health monitoring for Debian-based Linux"
+license = "MIT"
+
+[[bin]]
+name = "health"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
+serde_json = "1"
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+clap = { version = "4", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde"] }
+sysinfo = "0.31"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+anyhow = "1"
+serenity = { version = "0.12", default-features = false, features = ["client", "gateway", "model", "cache", "http", "rustls_backend"] }
+notify = "6"
+async-trait = "0.1"
+tokio-cron-scheduler = "0.10"
+uuid = { version = "1", features = ["v4"] }
+
+[package.metadata.deb]
+maintainer = "system-health-report"
+copyright = "2024"
+extended-description = "AI-powered system health monitoring tool that analyzes system metrics and logs, then sends reports to Discord via webhook or bot."
+depends = "$auto"
+section = "admin"
+priority = "optional"
+assets = [
+    ["target/release/health", "usr/bin/health", "755"],
+    ["config.yml", "etc/system-health-report/config.yml", "644"],
+    ["debian/system-health-report.service", "etc/systemd/system/system-health-report.service", "644"],
+]
+conf-files = ["/etc/system-health-report/config.yml"]
+maintainer-scripts = "debian/"

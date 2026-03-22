@@ -1,0 +1,9 @@
+Package: system-health-report
+Version: 0.1.0
+Architecture: amd64
+Maintainer: system-health-report
+Depends: libc6
+Section: admin
+Priority: optional
+Description: AI-powered system health monitoring for Debian-based Linux
+ Monitors system metrics and logs, analyzes with AI, reports to Discord.

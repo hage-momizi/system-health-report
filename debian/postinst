@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+# Create dedicated user
+if ! id -u health-report > /dev/null 2>&1; then
+    useradd --system --no-create-home --shell /usr/sbin/nologin health-report
+fi
+
+# Create config dir with correct permissions
+mkdir -p /etc/system-health-report
+chown health-report:health-report /etc/system-health-report
+
+# Copy default config if not exists
+if [ ! -f /etc/system-health-report/config.yml ]; then
+    cp /etc/system-health-report/config.yml.dpkg-new /etc/system-health-report/config.yml 2>/dev/null || true
+fi
+
+# Reload systemd
+systemctl daemon-reload || true
+
+#DEBHELPER#
