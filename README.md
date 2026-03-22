@@ -156,11 +156,15 @@ health --run-now
 # Run with a custom config path
 health --config /path/to/config.yml --run-now
 
-# Generate fix commands for an issue (dry-run)
-health --fix "nginx is returning 502 errors"
+# Generate fix commands from a fix-note file (dry-run, no execution)
+echo "nginx is returning 502 errors" > /tmp/fix.txt
+health --fix-note /tmp/fix.txt
 
-# Execute fix commands automatically
-health --fix "nginx is returning 502 errors" --auto-execute
+# Generate and automatically execute fix commands
+health --fix-note /tmp/fix.txt --mode auto
+
+# Stream bash command output to Discord (watch mode)
+health --watch
 
 # Start the scheduler + Discord bot daemon
 health
